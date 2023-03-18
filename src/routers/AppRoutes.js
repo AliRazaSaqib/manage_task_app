@@ -9,6 +9,7 @@ import { ShouldBeLoggedIn, ShouldBeLoggedOut } from "./ProtectedRoutes";
 // fetch router and add lazy loading on it
 const Login = lazy(() => import("../components/auth/Login"));
 const Task = lazy(() => import("../components/manageTask/Task"));
+const NotFound = lazy(() => import("../components/404/NotFound"));
 
 export default function AppRoutes() {
   return (
@@ -32,6 +33,14 @@ export default function AppRoutes() {
                     element={
                       <ShouldBeLoggedIn>
                         <Task />
+                      </ShouldBeLoggedIn>
+                    }
+                  />
+                  <Route
+                    path="*"
+                    element={
+                      <ShouldBeLoggedIn>
+                        <NotFound />
                       </ShouldBeLoggedIn>
                     }
                   />
