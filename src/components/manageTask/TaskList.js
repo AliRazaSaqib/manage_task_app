@@ -3,7 +3,7 @@ import classes from "./task.module.css";
 import del from "../../assets/delete.png";
 import edit from "../../assets/edit.png";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, editTask } from "../../redux/action/actions";
+import { deleteTask, editStatus } from "../../redux/action/actions";
 import EditTask from "./editTask/EditTask";
 
 export default function TaskList() {
@@ -21,7 +21,7 @@ export default function TaskList() {
   };
 
   const handleStatusChange = (id, status) => {
-    dispatch(editTask({ id, status }));
+    dispatch(editStatus({ id, status }));
   };
 
   return (

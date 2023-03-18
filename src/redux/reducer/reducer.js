@@ -1,4 +1,9 @@
-import { CREATETASK, EDITTASK, DELETETASK } from "../action/actionTypes";
+import {
+  CREATETASK,
+  EDITTASK,
+  DELETETASK,
+  UPDATESTATUS,
+} from "../action/actionTypes";
 
 const initialState = {
   tasks: [],
@@ -36,6 +41,40 @@ const reducer = (state = initialState, action) => {
       };
 
     case EDITTASK:
+      // Find the index of the task to be updated
+      const edittaskIndex = state.tasks.findIndex(
+        (task) => task.id === action.payload.id
+      );
+
+      // If the task is not found, return the current state with error message
+      if (edittaskIndex === -1) {
+        return {
+          ...state,
+          error: "Task not found",
+        };
+      }
+
+      // Update the task at the given index with the new properties
+      const updateTask = {
+        ...state.tasks[edittaskIndex],
+        name: action.payload.name,
+        detail: action.payload.detail,
+      };
+
+      // Create a new tasks array with the updated task
+      const updateTasksArray = [
+        ...state.tasks.slice(0, edittaskIndex),
+        updateTask,
+        ...state.tasks.slice(edittaskIndex + 1),
+      ];
+
+      return {
+        ...state,
+        tasks: updateTasksArray,
+        error: null,
+      };
+
+    case UPDATESTATUS:
       // Find the index of the task to be updated
       const taskIndex = state.tasks.findIndex(
         (task) => task.id === action.payload.id

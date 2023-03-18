@@ -5,7 +5,6 @@ import { editTask } from "../../../redux/action/actions";
 
 export default function EditTask({ setShow, rowData }) {
   const dispatch = useDispatch();
-  const showError = useSelector((state) => state.tasks.error);
   const [values, setValues] = useState({ name: "", detail: "" });
   const [error, setError] = useState("");
 
@@ -71,7 +70,6 @@ export default function EditTask({ setShow, rowData }) {
           <button type="submit">Update</button>
         </form>
         {error && <div className={classes.error}>{error}</div>}
-        {showError && <div className={classes.error}>{showError}</div>}
       </div>
     </>
   );

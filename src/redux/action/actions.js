@@ -1,4 +1,11 @@
-import { CREATETASK, EDITTASK, DELETETASK, LOGIN, LOGOUT } from "./actionTypes";
+import {
+  CREATETASK,
+  EDITTASK,
+  DELETETASK,
+  LOGIN,
+  LOGOUT,
+  UPDATESTATUS,
+} from "./actionTypes";
 
 //// for login /////
 export const loginAction = ({ isLogin_true }) => ({
@@ -23,12 +30,19 @@ export const createTask = ({ id, name, detail, status = "pending" }) => ({
   },
 });
 
-export const editTask = ({ id, name, detail, status }) => ({
+export const editTask = ({ id, name, detail }) => ({
   type: EDITTASK,
   payload: {
     id,
     name,
     detail,
+  },
+});
+
+export const editStatus = ({ id, status }) => ({
+  type: UPDATESTATUS,
+  payload: {
+    id,
     status,
   },
 });
