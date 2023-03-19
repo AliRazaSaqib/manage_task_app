@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import classes from "./task.module.css";
 import del from "../../assets/delete.png";
 import edit from "../../assets/edit.png";
+import details from "../../assets/details.png";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, editStatus } from "../../redux/action/actions";
 import EditTask from "./editTask/EditTask";
+import ViewDetails from "./viewDetails/ViewDetails";
 
 export default function TaskList() {
   const taskList = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const [rowData, setRowData] = useState();
 
   const handleDelete = (id) => {
@@ -58,6 +61,14 @@ export default function TaskList() {
                   setShow(true);
                 }}
               />
+              <img
+                src={details}
+                height={26}
+                onClick={() => {
+                  setRowData(el);
+                  setShowDetails(true);
+                }}
+              />
             </div>
           </li>
         ))}
@@ -65,6 +76,10 @@ export default function TaskList() {
       {show ? (
         <div className={classes.edit_task_overlay}>
           <EditTask setShow={setShow} rowData={rowData} />
+        </div>
+      ) : showDetails ? (
+        <div className={classes.edit_task_overlay}>
+          <ViewDetails setShowDetails={setShowDetails} rowData={rowData} />
         </div>
       ) : null}
     </div>

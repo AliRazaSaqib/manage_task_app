@@ -2,9 +2,18 @@ h2 {
   padding: 0;
   margin: 16px 0 6px 0;
 }
+h4 {
+  margin: 0;
+  color: #4caf50;
+}
+h1 {
+  margin: 0;
+  text-align: center;
+  color: #4caf50;
+}
 
 .Main_container {
-  max-width: 500px;
+  max-width: 650px;
   width: 100%;
   margin: auto;
   margin-top: 50px;
@@ -94,6 +103,11 @@ h2 {
 
 .user_name {
   flex: 1;
+  max-width: 170px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 
 .user_actions {
@@ -110,7 +124,8 @@ h2 {
 
 /* edit task */
 
-.edit_form {
+.edit_form,
+.detail_view {
   border-radius: 8px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   padding: 18px 12px;
@@ -144,4 +159,17 @@ h2 {
   justify-content: center;
   font-weight: 900;
   cursor: pointer;
+}
+.detail_view {
+  max-width: 500px;
+  width: 100%;
+}
+.detail_view .details {
+  margin-top: 18px;
+}
+.detail_view .details div:not(:first-child) {
+  margin-top: 24px;
+}
+.detail_view .details label {
+  padding: 12px 0 0 12px;
 }
